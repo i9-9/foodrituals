@@ -3,9 +3,13 @@
 import Link from 'next/link';
 import Newsletter from './Newsletter';
 
-export default function Footer() {
+interface FooterProps {
+  borderTop?: boolean;
+}
+
+export default function Footer({ borderTop = false }: FooterProps = {}) {
   return (
-    <div className="footer">
+    <div className="footer" style={borderTop ? { borderTop: '0.5px solid #000000' } : {}}>
       <div className="footer-container">
         {/* Mobile Newsletter - Top */}
         <div className="newsletter fblock mobile">

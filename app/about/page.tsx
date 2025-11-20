@@ -1,134 +1,361 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useState } from 'react';
-import Header from '@/components/Header';
+import Link from 'next/link';
 import Footer from '@/components/Footer';
 
 export default function About() {
   const [hoveredPerson, setHoveredPerson] = useState<'antonella' | 'sandie' | null>(null);
 
-  const fadeInUp = {
-    initial: { opacity: 0, y: 50 },
-    whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true },
-    transition: { duration: 0.8 }
-  };
-
   return (
     <>
-      <Header variant="light" showBottomMenu={false} />
+      <style jsx global>{`
+        body {
+          background: #FCF7EF !important;
+          color: #000000 !important;
+        }
 
-      <main className="bg-cream text-black min-h-screen">
-        <section id="About" className="min-h-screen flex items-center justify-center pt-[180px] pb-20 px-8 max-md:pt-[90px]">
-          <div className="max-w-[1200px] w-full flex items-start gap-8 max-lg:flex-col max-lg:items-center">
-            
-            {/* Columna de imágenes - Desktop */}
-            <div className="w-2/5 relative min-h-[600px] max-lg:hidden">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: hoveredPerson === 'antonella' ? 1 : 0 }}
-                transition={{ duration: 0.25 }}
-                className="absolute top-[20vh] pr-[60px]"
-              >
-                <Image
-                  src="/images/Antonella.png"
-                  alt="Antonella"
-                  width={400}
-                  height={500}
-                  className="w-auto h-auto"
-                />
-              </motion.div>
+        .about-page header {
+          display: block;
+          width: 100%;
+          margin: auto;
+          display: flex;
+          position: absolute;
+          z-index: 10;
+        }
 
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: hoveredPerson === 'sandie' ? 1 : 0 }}
-                transition={{ duration: 0.25 }}
-                className="absolute bottom-0 pl-[60px]"
-              >
-                <Image
-                  src="/images/Sandie.png"
-                  alt="Sandie"
-                  width={400}
-                  height={500}
-                  className="w-auto h-auto"
-                />
-              </motion.div>
+        .about-page .menu-header {
+          display: inline-flex;
+          height: auto;
+          width: 100%;
+          max-width: 1200px;
+          margin: auto;
+          font-size: 20px;
+          padding-top: 60px;
+        }
+
+        .about-page .menu-header-bottom {
+          display: inline-flex;
+          height: auto;
+          width: 100%;
+          max-width: 1200px;
+          margin: auto;
+          font-size: 20px;
+          padding-bottom: 60px;
+          bottom: 60px;
+          top: auto;
+        }
+
+        .about-page .heder-element {
+          position: relative;
+          margin: auto;
+        }
+
+        .about-page .menu-whoweare {
+          margin-left: 30px;
+        }
+
+        .about-page .menu-contact {
+          margin-right: 30px;
+        }
+
+        .about-page a {
+          color: #000000;
+          text-decoration: none;
+        }
+
+        .about-page .header-bottom {
+          display: block;
+          width: 100%;
+          margin: auto;
+          display: flex;
+          position: absolute;
+          z-index: 10;
+          bottom: 0;
+        }
+
+        .about-page .menu-logo img {
+          width: 90px;
+          height: auto;
+        }
+
+        .about-page .fix-back2 {
+          width: 105px;
+          display: block;
+        }
+
+        .about {
+          min-height: 100vh;
+          height: 100%;
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          align-items: center;
+          padding-top: 190px;
+        }
+
+        .about-img {
+          width: 40%;
+          float: left;
+          display: block;
+          margin: 10px;
+        }
+
+        .about-text {
+          width: 60%;
+          float: right;
+          display: block;
+          max-width: 538px;
+          z-index: 1;
+          padding: 30px;
+          padding-top: 0px;
+        }
+
+        .img-a {
+          position: absolute;
+          top: 20vh;
+          padding-right: 60px;
+          opacity: 0;
+          transition: opacity .25s ease-in-out;
+        }
+
+        .img-a.show {
+          opacity: 1;
+          transition: opacity .25s ease-in-out;
+        }
+
+        .img-s {
+          position: absolute;
+          bottom: auto;
+          padding-left: 60px;
+          opacity: 0;
+          transition: opacity .25s ease-in-out;
+        }
+
+        .img-s.show {
+          opacity: 1;
+          transition: opacity .25s ease-in-out;
+        }
+
+        .img01-break {
+          display: none;
+        }
+
+        .img02-break {
+          display: none;
+        }
+
+        .titleabout {
+          font-size: 30px;
+          line-height: 30px;
+        }
+
+        .textabout {
+          font-size: 16px;
+          line-height: 18px;
+        }
+
+        @media (max-width: 1400px) {
+          .about {
+            height: 100%;
+            min-height: 100vh;
+            padding-top: 180px;
+          }
+        }
+
+        @media (max-width: 1200px) {
+          .about-text {
+            width: 80%;
+          }
+
+          .img-a {
+            padding-top: 120px;
+            top: 30vh;
+          }
+
+          .img-s {
+            padding-top: 300px;
+            bottom: auto;
+          }
+
+          .img01-break {
+            display: table;
+            margin: auto;
+            padding-top: 50px;
+            padding-bottom: 80px;
+          }
+
+          .img02-break {
+            display: table;
+            margin: auto;
+            padding-top: 50px;
+            padding-bottom: 80px;
+          }
+
+          .img-a {
+            display: none;
+          }
+
+          .img-s {
+            display: none;
+          }
+
+          .header-bottom {
+            display: none;
+          }
+
+          .about-img {
+            display: none;
+          }
+
+          .titleabout {
+            font-size: 30px;
+            line-height: 30px;
+          }
+
+          .textabout {
+            font-size: 16px;
+            line-height: 18px;
+          }
+        }
+
+        @media (max-width: 800px) {
+          .about-text {
+            width: 100%;
+            padding-top: 60px;
+          }
+
+          .about {
+            padding-top: 90px;
+          }
+
+          .titleabout {
+            font-size: 26px;
+            line-height: 26px;
+          }
+
+          .textabout {
+            font-size: 16px;
+            line-height: 18px;
+          }
+
+          .about-page .menu-header {
+            font-size: 14px;
+            max-width: 600px;
+            padding-top: 30px;
+          }
+
+          .about-page .menu-header-bottom {
+            font-size: 14px;
+            max-width: 600px;
+            padding-bottom: 30px;
+          }
+
+          .about-page .menu-logo img {
+            width: 44px;
+            height: auto;
+          }
+
+          .about-page .fix-back2 {
+            width: 50px;
+            display: block;
+          }
+
+          .about-page .menu-logo {
+            padding-left: 10px;
+          }
+        }
+      `}</style>
+
+      <div className="about-page">
+        <header>
+          <span id="FoodRituals"></span>
+          <section id="about"></section>
+
+          <div className="menu-header">
+            <div className="menu-whoweare heder-element">
+              <Link href="/">BACK</Link>
+            </div>
+            <div className="fix-back2"></div>
+            <div className="menu-logo heder-element">
+              <Link href="/">
+                <img src="/images/menu-logo-invert.png" alt="Food Rituals" />
+              </Link>
+            </div>
+            <div className="menu-contact heder-element">
+              <Link href="/about">WHO WE ARE</Link>
+            </div>
+          </div>
+        </header>
+
+        <div className="header-bottom">
+          <div className="menu-header-bottom">
+            <div className="menu-whoweare heder-element"></div>
+            <div className="menu-contact heder-element"></div>
+          </div>
+        </div>
+
+        <section id="About">
+          <div className="about">
+            <div className="about-img">
+              <div className={`img-a ${hoveredPerson === 'antonella' ? 'show' : ''}`}>
+                <img src="/images/Antonella.png" alt="Antonella" />
+              </div>
+              <div className={`img-s ${hoveredPerson === 'sandie' ? 'show' : ''}`}>
+                <img src="/images/Sandie.png" alt="Sandie" />
+              </div>
             </div>
 
-            {/* Columna de texto */}
-            <div className="w-3/5 max-w-[538px] max-lg:w-full">
-              {/* Antonella */}
-              <motion.div
-                {...fadeInUp}
+            <div className="about-text">
+              <div
+                className="hover-a"
                 onMouseEnter={() => setHoveredPerson('antonella')}
                 onMouseLeave={() => setHoveredPerson(null)}
-                className="mb-12"
               >
-                <h2 className="text-[30px] leading-[30px] mb-4 max-md:text-[26px]">
-                  ANTONELLA
-                </h2>
-                <p className="text-[16px] leading-[18px]">
-                  Artista visual, performer y "cocinera de rituales" argentina, radicada en NYC. 
-                  Su trabajo busca explorar la antropología de los rituales cotidianos, 
-                  transformándolos en experiencias sensoriales inmersivas que desafían las 
-                  fronteras entre el arte, la comida y la ceremonia. A través de sus proyectos, 
-                  invita a los participantes a reconectar con los aspectos más primitivos y 
-                  sagrados de la alimentación, explorando cómo los rituales colectivos pueden 
-                  ser herramientas de transformación y conexión humana.
-                </p>
-              </motion.div>
+                <span className="titleabout">ANTONELLA</span>
+                <br /> <br />
+                <span className="textabout">
+                  Antonella Tignanelli is a chef, creative director & food researcher.
+                </span>
+                <br /> <br />
+                <span className="textabout">
+                  She has been passionate about the history of food and the passing of cooking traditions from a very early age, introduced to the world of cooking through her grandmother's feasts. Born in Buenos Aires, she lived all around the globe, where she learnt different native food techniques and participated in many cultural celebrations. She has been part of the food industry for 15 years, where she started as a chef and then designed restaurant concepts in different countries. She spent the last few years creating Food Rituals, where she acts as the food & arts director.
+                </span>
+                <br /> <br />
+              </div>
 
-              {/* Imagen Antonella - Mobile */}
-              <motion.div {...fadeInUp} className="lg:hidden mb-12 text-center">
-                <Image
-                  src="/images/Antonella.png"
-                  alt="Antonella"
-                  width={350}
-                  height={400}
-                  className="w-auto h-auto mx-auto"
-                />
-              </motion.div>
+              <div className="img01-break">
+                <img src="/images/Antonella.png" alt="Antonella" />
+              </div>
 
-              {/* Sandie */}
-              <motion.div
-                {...fadeInUp}
+              <div
+                className="hover-b"
                 onMouseEnter={() => setHoveredPerson('sandie')}
                 onMouseLeave={() => setHoveredPerson(null)}
-                className="mb-12"
               >
-                <h2 className="text-[30px] leading-[30px] mb-4 max-md:text-[26px]">
-                  SANDIE
-                </h2>
-                <p className="text-[16px] leading-[18px]">
-                  Directora de teatro, escenógrafa y conceptualizadora de experiencias 
-                  inmersivas. Con una formación en dramaturgia y diseño espacial, Sandie 
-                  trae una sensibilidad única para construir mundos teatrales que integran 
-                  todos los sentidos. Su enfoque combina elementos de teatro experimental, 
-                  instalación artística y performance participativa, creando espacios donde 
-                  los límites entre espectador y performer se disuelven, permitiendo que 
-                  cada participante se convierta en parte activa de la narrativa.
-                </p>
-              </motion.div>
+                <br />
+                <span className="titleabout">SANDIE</span>
+                <br /> <br />
+                <span className="textabout">
+                  Sandie is a creative producer.
+                </span>
+                <br /> <br />
+                <span className="textabout">
+                  She was raised in France's Brittany, where she acquired a deep sense of conviviality and an unconditional love for feasts. When she moved to Mexico City (2013), she founded The Hidden Kitchen - monthly secret pop-up dinners in unusual locations, that now designs original food events playing with gastronomy, art and performance. Profoundly passionate about perpetuating the meaning, connection and pleasure that our traditions hold, Sandie co-founded the Food Rituals' event platform, through which she hosts one-of-a-kind celebrations.
+                </span>
+              </div>
 
-              {/* Imagen Sandie - Mobile */}
-              <motion.div {...fadeInUp} className="lg:hidden text-center">
-                <Image
-                  src="/images/Sandie.png"
-                  alt="Sandie"
-                  width={350}
-                  height={400}
-                  className="w-auto h-auto mx-auto"
-                />
-              </motion.div>
+              <div className="img02-break">
+                <img src="/images/Sandie.png" alt="Sandie" />
+              </div>
             </div>
           </div>
         </section>
-      </main>
+      </div>
 
-      <Footer variant="light" />
+      <Footer borderTop={true} />
     </>
   );
 }
-
