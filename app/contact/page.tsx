@@ -50,7 +50,7 @@ export default function Contact() {
         </section>
       </main>
 
-      <Footer variant="light" />
+      <Footer />
     </>
   );
 }

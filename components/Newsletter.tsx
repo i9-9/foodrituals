@@ -62,7 +62,7 @@ export default function Newsletter() {
         <input type="text" name="b_9336042c2cf52ca313cb8e6ec_efc3179aaf" tabIndex={-1} value="" readOnly />
       </span>
 
-      <span style={{ position: 'flex-inline' }} className="clear">
+      <span className="clear">
         <button type="submit" disabled={status === 'loading'} className="button">
           <img
             style={{ paddingBottom: '2px', paddingRight: '4px', fontWeight: 100 }}

@@ -1,12 +1,13 @@
 'use client';
 
 import { useRef } from 'react';
+import type { ReactNode } from 'react';
 
 interface Event {
   id: string;
   number: string;
-  title: string | JSX.Element;
-  date: string | JSX.Element;
+  title: string | ReactNode;
+  date: string | ReactNode;
   images: Array<{ src: string; className: string }>;
   width: string;
   widthMobile: string;
